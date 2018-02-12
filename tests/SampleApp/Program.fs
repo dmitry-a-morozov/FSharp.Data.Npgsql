@@ -1,31 +1,14 @@
-﻿[<EntryPoint>]
+﻿open FSharp.Data.Npgsql
+
+[<Literal>]
+let connectionString = "Host=localhost;Username=postgres;Database=dvdrental;Port=32768"
+
+[<EntryPoint>]
 let main _ =
 
-    //NpgsqlConnectionSamples.basicQuery()
-    //NpgsqlCommandSamples.basicQuery()
-    //NpgsqlCommandSamples.basicQueryTypeAlias()
+    //remove comment around ResultType.Tuples to make it fail
+    let cmd = new NpgsqlCommand<"SELECT now() as now",connectionString (*, ResultType.Tuples *) >(connectionString)
 
-    //NpgsqlConnectionSamples.``Parameterized query``()
-    //NpgsqlCommandSamples.``Parameterized query``()
-
-    //NpgsqlConnectionSamples.singleton()
-    //NpgsqlCommandSamples.singleton()
-
-    //NpgsqlCommandSamples.asyncBasicQuery()
-    //NpgsqlConnectionSamples.asyncBasicQuery()
-
-    //NpgsqlConnectionSamples.basicQueryTuples()
-
-    //NpgsqlCommandSamples.basicQueryFsx()
-
-    //NpgsqlCommandSamples.tx()
-    //NpgsqlConnectionSamples.tx()
-    //NpgsqlConnectionSamples.txGlobal()
-
-    //NpgsqlCommandSamples.handWrittenUpsert()
-
-    //NpgsqlCommandSamples.resultTypeDataTable()
-
-    NpgsqlConnectionSamples.insertOnly()
+    cmd.Execute() |> Seq.toList |> List.head |> printfn "Result is: %A"
 
     0 

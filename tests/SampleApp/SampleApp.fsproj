@@ -6,22 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Connection.fs" />
-    <Compile Include="NpgsqlConnectionSamples.fs" />
-    <Compile Include="NpgsqlCommandSamples.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FSharp.Data.Npgsql" Version="0.1.17-beta" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
     <PackageReference Include="Npgsql" Version="3.2.6" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Reference Include="FSharp.Data.Npgsql">
-      <HintPath>..\..\src\Runtime\bin\Release\netstandard2.0\FSharp.Data.Npgsql.dll</HintPath>
+      <HintPath>$(HOMEPATH)\.nuget\packages\fsharp.data.npgsql\0.1.17-beta\lib\netstandard2.0\FSharp.Data.Npgsql.dll</HintPath>
     </Reference>
-  </ItemGroup>
+  </ItemGroup>-->
 
   <PropertyGroup>
     <IsWindows Condition="'$(OS)' == 'Windows_NT'">true</IsWindows>
